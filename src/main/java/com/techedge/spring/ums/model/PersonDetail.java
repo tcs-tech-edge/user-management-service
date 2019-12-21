@@ -1,6 +1,6 @@
 package com.techedge.spring.ums.model;
 
-public class UserDetail {
+public class PersonDetail {
 
     private String firstName;
 
