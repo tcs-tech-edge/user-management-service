@@ -2,8 +2,8 @@ package com.techedge.spring.ums.data.entity;
 
 import javax.persistence.*;
 
-@Entity(name = "people")
-public class Person {
+@Entity(name = "user")
+public class User {
 
 
     @Id
@@ -16,10 +16,10 @@ public class Person {
     @Column(name = "last_name")
     private String lastName;
 
-    public Person() {
+    public User() {
     }
 
-    public Person(String firstName, String lastName) {
+    public User(String firstName, String lastName) {
         this.firstName = firstName;
         this.lastName = lastName;
     }
