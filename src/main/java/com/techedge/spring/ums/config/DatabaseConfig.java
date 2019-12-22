@@ -19,21 +19,29 @@ import java.util.Properties;
 @EnableJpaRepositories("com.techedge.spring.ums.data.repository")
 public class DatabaseConfig {
 
-
     @Value("${database.driver}")
     private String databaseDriver;
+
     @Value("${database.url}")
     private String databaseUrl;
+
     @Value("${database.username}")
     private String databaseUsername;
+
     @Value("${database.password}")
     private String databasePassword;
+
     @Value("${database.platform}")
     private String databasePlatform;
-    @Value("${spring.jpa.show-sql}")
+
+    @Value("${database.show.sql:false}")
     private boolean showSql;
-    @Value("${package.to.scan}")
+
+    @Value("${package.to.scan:com.techedge.spring.ums.data.entity}")
     private String packageToScan;
+
+    @Value("${database.generate.ddl:false}")
+    private boolean generateDDL;
 
     @Bean
     public DataSource dataSource() {
@@ -46,11 +54,11 @@ public class DatabaseConfig {
     }
 
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory() {
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
         LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
         lef.setPackagesToScan(packageToScan);
-        lef.setDataSource(dataSource());
-        lef.setJpaVendorAdapter(jpaVendorAdapter());
+        lef.setDataSource(dataSource);
+        lef.setJpaVendorAdapter(jpaVendorAdapter);
         lef.setJpaProperties(new Properties());
         return lef;
     }
@@ -58,9 +66,9 @@ public class DatabaseConfig {
     @Bean
     public JpaVendorAdapter jpaVendorAdapter() {
         HibernateJpaVendorAdapter jpaVendorAdapter = new HibernateJpaVendorAdapter();
-        jpaVendorAdapter.setDatabase(Database.MYSQL);
         jpaVendorAdapter.setShowSql(showSql);
         jpaVendorAdapter.setDatabasePlatform(databasePlatform);
+        jpaVendorAdapter.setGenerateDdl(generateDDL);
         return jpaVendorAdapter;
     }
 }
