@@ -1,5 +1,5 @@
 = User Management service (UMS) API Guide
-Andy Wilkinson;
+Murugesh Kumar;
 :doctype: book
 :icons: font
 :source-highlighter: highlightjs
@@ -66,12 +66,6 @@ use of HTTP status codes.
 Whenever an error response (status code >= 400) is returned, the body will contain a JSON object
 that describes the problem. The error object has the following structure:
 
-
-For example, a request that attempts to apply a non-existent tag to a note will produce a
-`400 Bad Request` response:
-
-include::{snippets}/user-list-example/http-response.adoc[]
-
 [[overview-hypermedia]]
 == Hypermedia
 
@@ -97,5 +91,5 @@ The Users resource is used to create and list user.
 
 A `GET` request will list all of the users.
 
-operation::user-list-example[snippets='response-fields,curl-request,http-response,links']
+operation::user-list-example[snippets='curl-request,http-response']
 
