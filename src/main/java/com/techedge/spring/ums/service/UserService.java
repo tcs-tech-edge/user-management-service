@@ -6,6 +6,6 @@ import java.util.List;
 
 public interface UserService {
 
-    public UserDetail addUser(UserDetail userDetail);
-    public List<UserDetail> getAllUsers();
+    UserDetail addUser(UserDetail userDetail);
+    List<UserDetail> getAllUsers();
 }

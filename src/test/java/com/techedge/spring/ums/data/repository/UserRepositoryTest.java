@@ -1,13 +1,15 @@
 package com.techedge.spring.ums.data.repository;
 
 import com.techedge.spring.ums.data.entity.User;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertNotNull;
 
 @RunWith(SpringRunner.class)
 @DataJpaTest
@@ -27,10 +29,10 @@ public class UserRepositoryTest {
 
         User userFromDB = userRepository.findById(1).orElse(null);
 
-        Assert.assertNotNull(userFromDB);
-        Assert.assertEquals("Murugesh",userFromDB.getFirstName());
-        Assert.assertEquals("Kumar",userFromDB.getLastName());
-        Assert.assertNotNull(userFromDB.getId());
+        assertNotNull(userFromDB);
+        assertEquals("Murugesh",userFromDB.getFirstName());
+        assertEquals("Kumar",userFromDB.getLastName());
+        assertEquals(1,userFromDB.getId());
 
     }
 

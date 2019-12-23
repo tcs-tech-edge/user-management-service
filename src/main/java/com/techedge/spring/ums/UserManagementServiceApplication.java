@@ -13,9 +13,7 @@ public class UserManagementServiceApplication extends SpringBootServletInitializ
 
 	public static void main(String[] args) {
 		SpringApplication.run(UserManagementServiceApplication.class, args);
-		System.getenv().forEach((key,value)-> {
-			LOGGER.debug("{} -> {}", key,value);
-		});
+		System.getenv().forEach((key,value)-> LOGGER.debug("{} -> {}", key,value));
 	}
 
 }
