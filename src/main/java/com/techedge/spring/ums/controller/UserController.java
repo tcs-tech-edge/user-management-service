@@ -16,13 +16,13 @@ public class UserController {
 
     @CrossOrigin
     @GetMapping("/user/list")
-    public List<UserDetail> getAllUsers(){
-       return userService.getAllUsers();
+    public List<UserDetail> getAllUsers() {
+        return userService.getAllUsers();
     }
 
     @CrossOrigin
-    @PostMapping(value = "/user/add",produces = MediaType.APPLICATION_JSON_VALUE,consumes = MediaType.APPLICATION_JSON_VALUE)
-    public UserDetail addUser(@RequestBody UserDetail userDetail){
+    @PostMapping(value = "/user/add", produces = MediaType.APPLICATION_JSON_VALUE, consumes = MediaType.APPLICATION_JSON_VALUE)
+    public UserDetail addUser(@RequestBody UserDetail userDetail) {
         return userService.addUser(userDetail);
     }
 

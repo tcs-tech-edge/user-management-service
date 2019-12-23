@@ -41,7 +41,7 @@ public class UserControllerIntegrationTest {
 
 
     @Before
-    public void setMockMvc(){
+    public void setMockMvc() {
         mvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .apply(springSecurity())
@@ -58,9 +58,9 @@ public class UserControllerIntegrationTest {
         mvc.perform(get("/user/list"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(1)))
-                .andExpect(jsonPath("$[0].firstName",is("Murugesh")))
-                .andExpect(jsonPath("$[0].lastName",is("Kumar")));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].firstName", is("Murugesh")))
+                .andExpect(jsonPath("$[0].lastName", is("Kumar")));
 
     }
 }

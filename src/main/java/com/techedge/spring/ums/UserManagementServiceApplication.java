@@ -9,11 +9,11 @@ import org.springframework.boot.web.servlet.support.SpringBootServletInitializer
 @SpringBootApplication
 public class UserManagementServiceApplication extends SpringBootServletInitializer {
 
-	private static  final Logger LOGGER = LoggerFactory.getLogger(UserManagementServiceApplication.class);
+    private static final Logger LOGGER = LoggerFactory.getLogger(UserManagementServiceApplication.class);
 
-	public static void main(String[] args) {
-		SpringApplication.run(UserManagementServiceApplication.class, args);
-		System.getenv().forEach((key,value)-> LOGGER.debug("{} -> {}", key,value));
-	}
+    public static void main(String[] args) {
+        SpringApplication.run(UserManagementServiceApplication.class, args);
+        System.getenv().forEach((key, value) -> LOGGER.debug("{} -> {}", key, value));
+    }
 
 }

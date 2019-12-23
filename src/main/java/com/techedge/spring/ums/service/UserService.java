@@ -7,5 +7,6 @@ import java.util.List;
 public interface UserService {
 
     UserDetail addUser(UserDetail userDetail);
+
     List<UserDetail> getAllUsers();
 }

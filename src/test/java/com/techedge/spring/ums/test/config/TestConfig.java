@@ -10,12 +10,12 @@ import org.springframework.context.annotation.Bean;
 public class TestConfig {
 
     @Bean
-    public UserService userService(){
+    public UserService userService() {
         return new UserServiceImpl();
     }
 
     @Bean
-    public UserMapper userMapper(){
+    public UserMapper userMapper() {
         return new UserMapper();
     }
 }

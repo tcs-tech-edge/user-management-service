@@ -22,7 +22,7 @@ public class UserRepositoryTest {
     private UserRepository userRepository;
 
     @Test
-    public void testUserPersistance(){
+    public void testUserPersistance() {
         User user = new User("Murugesh", "Kumar");
         testEntityManager.persist(user);
         testEntityManager.flush();
@@ -30,9 +30,9 @@ public class UserRepositoryTest {
         User userFromDB = userRepository.findById(1).orElse(null);
 
         assertNotNull(userFromDB);
-        assertEquals("Murugesh",userFromDB.getFirstName());
-        assertEquals("Kumar",userFromDB.getLastName());
-        assertEquals(1,userFromDB.getId());
+        assertEquals("Murugesh", userFromDB.getFirstName());
+        assertEquals("Kumar", userFromDB.getLastName());
+        assertEquals(1, userFromDB.getId());
 
     }
 

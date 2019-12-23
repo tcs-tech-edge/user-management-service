@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 @Component
 public class UserMapper {
 
-    public User map(UserDetail userDetail){
+    public User map(UserDetail userDetail) {
         User user = new User();
         user.setFirstName(userDetail.getFirstName());
         user.setLastName(userDetail.getLastName());

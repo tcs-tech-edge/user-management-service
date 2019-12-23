@@ -39,7 +39,7 @@ public class UserControllerTest {
     private UserService userService;
 
     @Before
-    public void setMockMvc(){
+    public void setMockMvc() {
         mockMvc = MockMvcBuilders
                 .webAppContextSetup(webApplicationContext)
                 .apply(springSecurity())
@@ -59,9 +59,9 @@ public class UserControllerTest {
         mockMvc.perform(get("/user/list"))
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$",hasSize(1)))
-                .andExpect(jsonPath("$[0].firstName",is(user.getFirstName())))
-                .andExpect(jsonPath("$[0].lastName",is(user.getLastName())));
+                .andExpect(jsonPath("$", hasSize(1)))
+                .andExpect(jsonPath("$[0].firstName", is(user.getFirstName())))
+                .andExpect(jsonPath("$[0].lastName", is(user.getLastName())));
 
     }
 }

@@ -23,7 +23,7 @@ import static org.mockito.Mockito.when;
 //https://www.baeldung.com/spring-boot-testing
 
 @RunWith(SpringRunner.class)
-@ContextConfiguration(classes =TestConfig.class)
+@ContextConfiguration(classes = TestConfig.class)
 public class UserServiceImplTest {
 
     @Autowired
@@ -33,18 +33,18 @@ public class UserServiceImplTest {
     private UserRepository userRepository;
 
     @Before
-    public void setUserRepository(){
-        User user = new User("Murugesh","Kumar");
+    public void setUserRepository() {
+        User user = new User("Murugesh", "Kumar");
         when(userRepository.findAll()).thenReturn(Collections.singletonList(user));
     }
 
     @Test
-    public void whenUserFoundThenShouldReturn(){
+    public void whenUserFoundThenShouldReturn() {
         List<UserDetail> users = userService.getAllUsers();
         assertNotNull(users);
-        assertEquals(1,users.size());
-        assertEquals("Murugesh",users.get(0).getFirstName());
-        assertEquals("Kumar",users.get(0).getLastName());
+        assertEquals(1, users.size());
+        assertEquals("Murugesh", users.get(0).getFirstName());
+        assertEquals("Kumar", users.get(0).getLastName());
 
     }
 }
