@@ -1,4 +1,4 @@
-package com.techedge.spring.ums.test.integration;
+package com.techedge.spring.ums.controller;
 
 import com.techedge.spring.ums.UserManagementServiceApplication;
 import com.techedge.spring.ums.data.entity.User;
@@ -38,7 +38,6 @@ public class UserControllerIntegrationTest {
 
     @Autowired
     WebApplicationContext webApplicationContext;
-
 
     @Before
     public void setMockMvc() {
