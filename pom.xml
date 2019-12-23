@@ -10,7 +10,7 @@
 	</parent>
 	<groupId>com.techedge.spring</groupId>
 	<artifactId>user-management-service</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0</version>
 	<packaging>war</packaging>
 	<name>user-management-service</name>
 	<description>Spring boot Application for Managing user</description>
