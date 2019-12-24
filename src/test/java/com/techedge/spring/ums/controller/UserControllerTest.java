@@ -6,10 +6,13 @@ import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.restdocs.JUnitRestDocumentation;
+import org.springframework.restdocs.payload.JsonFieldType;
 import org.springframework.security.test.context.support.WithMockUser;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,8 +27,10 @@ import static org.hamcrest.Matchers.is;
 import static org.mockito.Mockito.when;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.document;
 import static org.springframework.restdocs.mockmvc.MockMvcRestDocumentation.documentationConfiguration;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 import static org.springframework.security.test.web.servlet.setup.SecurityMockMvcConfigurers.springSecurity;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -70,7 +75,40 @@ public class UserControllerTest {
                 .andExpect(jsonPath("$", hasSize(1)))
                 .andExpect(jsonPath("$[0].firstName", is(user.getFirstName())))
                 .andExpect(jsonPath("$[0].lastName", is(user.getLastName())))
-                .andDo(document("user-list-example"));
+                .andDo(document("user-list-example",
+                        responseFields(
+                                fieldWithPath("[].firstName").type(JsonFieldType.STRING).description("First name of the user"),
+                                fieldWithPath("[].lastName").type(JsonFieldType.STRING).description("Last name of the user")
+                        )
+                ));
+
+    }
+
+    @WithMockUser("murugesh")
+    @Test
+    public void addUserTest() throws Exception {
+        UserDetail user = new UserDetail();
+        user.setFirstName("Murugesh");
+        user.setLastName("Kumar");
+
+        when(userService.addUser(Mockito.any())).thenReturn(user);
+
+        mockMvc.perform(post("/user/add")
+                .contentType(MediaType.APPLICATION_JSON_VALUE)
+                .content("{\"firstName\":\"Murugesh\",\"lastName\":\"Kumar\"}"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(jsonPath("firstName", is(user.getFirstName())))
+                .andExpect(jsonPath("lastName", is(user.getLastName())))
+                .andDo(document("user-add-example",
+                        requestFields(
+                                fieldWithPath("firstName").type(JsonFieldType.STRING).description("First name of the user"),
+                                fieldWithPath("lastName").type(JsonFieldType.STRING).description("Last name of the user")),
+                        responseFields(
+                                fieldWithPath("firstName").type(JsonFieldType.STRING).description("First name of the user"),
+                                fieldWithPath("lastName").type(JsonFieldType.STRING).description("Last name of the user")
+                        )
+                ));
 
     }
 }
